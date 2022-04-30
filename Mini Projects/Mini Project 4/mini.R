@@ -1,0 +1,17 @@
+voltage <- read.csv("VOLTAGE.csv")
+voltage_local = voltage$voltage[which(voltage$location==0)]
+voltage_remote = voltage$voltage[which(voltage$location==1)]
+par(mfrow(1,2))
+qqnorm(voltage_local,main="Local")
+qqline(voltage_local)
+qqnorm(voltage_remote,main="Remote")
+qqline(voltage_remote)
+
+vapor <- read.csv("VAPOR.csv")
+qqnorm(vapor$theoretical,main="Theoretical")
+qqline(vapor$theoretical)
+qqnorm(vapor$experimental, main="Experimental")
+qqline(vapor$experimental)
+
+boxplot(vapor$theoretical, vapor$experimental,names=c("Theoretical", "Experimental"),
+        main="Theoretical and Experimental Boxplot")
